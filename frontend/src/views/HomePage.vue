@@ -236,7 +236,7 @@ export default defineComponent({
   watch: {},
 
   async mounted() {
-    await fetch("http://localhost:5000/initPlayers", {
+    await fetch(process.env.API_URL + "initPlayers", {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -252,7 +252,7 @@ export default defineComponent({
         return;
       }
       const response = await fetch(
-        "http://localhost:5000/login/" +
+        process.env.API_URL + "login/" +
           this.nombreUsuario.toString() +
           "/" +
           this.contraUsuario.toString(),
@@ -286,7 +286,7 @@ export default defineComponent({
       }
       const palabraTest = this.$route.query.palabra;
       const response = await fetch(
-        "http://localhost:5000/setPalabra/" +
+        process.env.API_URL + "setPalabra/" +
           this.dificultad.toString() +
           (palabraTest ? "?palabra=" + palabraTest : ""),
         {
@@ -323,7 +323,7 @@ export default defineComponent({
           ? this.letra.toString()
           : this.palabraArriesgada.toString();
       const response = await fetch(
-        "http://localhost:5000/juego/" +
+        process.env.API_URL + "juego/" +
           this.inputActual.toString() +
           "/" +
           txt,
@@ -358,7 +358,7 @@ export default defineComponent({
       }
     },
     async pedirPista() {
-      const response = await fetch("http://localhost:5000/darPista", {
+      const response = await fetch(process.env.API_URL + "darPista", {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -386,7 +386,7 @@ export default defineComponent({
       }
     },
     async calcularResultado() {
-      const response = await fetch("http://localhost:5000/resultado", {
+      const response = await fetch(process.env.API_URL + "resultado", {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -405,7 +405,7 @@ export default defineComponent({
       }
     },
     async getTop10() {
-      const response = await fetch("http://localhost:5000/top10", {
+      const response = await fetch(process.env.API_URL + "top10", {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -422,7 +422,7 @@ export default defineComponent({
       }
     },
     async retry() {
-      await fetch("http://localhost:5000/retryGame", {
+      await fetch(process.env.API_URL + "retryGame", {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -446,7 +446,7 @@ export default defineComponent({
       this.tabActual = "Dificultad";
     },
     async cerrarSesion() {
-      await fetch("http://localhost:5000/clearAll", {
+      await fetch(process.env.API_URL + "clearAll", {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
