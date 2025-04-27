@@ -1,10 +1,17 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+import os
+from dotenv import load_dotenv
 from ahorcado import Ahorcado
 from usuario import Usuario
 
+load_dotenv()
+
+frontend_url_local = os.getenv("FRONTEND_URL_LOCAL")
+frontend_url_netlify = os.getenv("FRONTEND_URL_NETLIFY")
+
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": [frontend_url_local, frontend_url_netlify]}})
 
 ahorcado = Ahorcado()
 
