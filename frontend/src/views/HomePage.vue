@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar color="primary">
-        <ion-title>Ahorcado</ion-title>
+        <ion-title>Ahorca2</ion-title>
       </ion-toolbar>
     </ion-header>
 
