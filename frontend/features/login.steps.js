@@ -1,4 +1,5 @@
-import { defineFeature, loadFeature, beforeEach, afterEach} from "jest-cucumber";
+import { defineFeature, loadFeature } from "jest-cucumber";
+import jest from "jest";
 const feature = loadFeature("./features/login.feature");
 const { getWebdriver, By } = require("./webdriver");
 jest.setTimeout(10000);
@@ -6,11 +7,11 @@ jest.setTimeout(10000);
 defineFeature(feature, (test) => {
   let driver;
 
-  beforeEach(async () => {
+  jest.beforeEach(async () => {
     driver = await getWebdriver();
   });
 
-  afterEach(async () => {
+  jest.afterEach(async () => {
     if (driver) {
       await driver.quit();
     }
