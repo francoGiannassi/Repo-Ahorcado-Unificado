@@ -297,9 +297,7 @@ export default defineComponent({
           }),
         }
       );
-      const responseJson = await response.json().catch((err) => {
-        console.log(err);
-      });
+      const responseJson = await response.json();
       this.palabra = responseJson.palabra;
       this.palabraParcial = responseJson.palabraParcial;
       this.tabActual = "Juego";
