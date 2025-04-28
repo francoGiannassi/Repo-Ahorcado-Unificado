@@ -11,13 +11,13 @@ const getWebdriver = async () => {
   options.addArguments("--disable-dev-shm-usage");
   options.addArguments("--disable-gpu");
   options.addArguments("--window-size=1920,1080");
-  options.setChromeBinaryPath("/usr/bin/google-chrome"); 
+  //options.setChromeBinaryPath("/usr/bin/google-chrome"); 
   
-  const service = new chrome.ServiceBuilder("/usr/bin/chromedriver");
+  //const service = new chrome.ServiceBuilder("/usr/bin/chromedriver");
   return await new Builder()
     .forBrowser("chrome")
     .setChromeOptions(options)
-    .setChromeService(service)
+    //.setChromeService(service)
     .build();
 };
 
