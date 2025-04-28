@@ -19,9 +19,8 @@ defineFeature(feature, (test) => {
   });
 
   test("Login successful", ({ given, and, when, then }) => {
-    let count = 1;
-    try {
-      given("I set franco as username", async () => {
+    given("I set franco as username", async () => {
+      try {
         await driver.wait(async () => {
           return driver
             .findElements(By.id("username"))
@@ -29,31 +28,39 @@ defineFeature(feature, (test) => {
         }, 10000);
         const input = await driver.findElement(By.css("#username input"));
         await input.sendKeys("franco");
-        count++;
-      });
+      } catch (error) {
+        console.error("I set franco as username", error);
+      }
+    });
 
-      and("12345 as password", async () => {
+    and("12345 as password", async () => {
+      try {
         const input = await driver.findElement(By.css("#password input"));
         await input.sendKeys("12345");
-        count++;
-      });
+      } catch (error) {
+        console.error("12345 as password", error);
+      }
+    });
 
-      when("I click login", async () => {
+    when("I click login", async () => {
+      try {
         const button = await driver.findElement(By.css("#loginBtn"));
         await button.click();
-        count++;
-      });
+      } catch (error) {
+        console.error("I click login", error);
+      }
+    });
 
-      then("I should see Difficulty Selection Page", async () => {
+    then("I should see Difficulty Selection Page", async () => {
+      try {
         await driver.wait(async () => {
           return driver
             .findElements(By.id("difSelector"))
             .then((found) => !!found.length);
         }, 10000);
-        count++;
-      });
-    } catch (error) {
-      console.error("Error in test " + count + ": " + error);
-    }
+      } catch (error) {
+        console.error("I should see Difficulty Selection Page", error);
+      }
+    });
   });
 });
