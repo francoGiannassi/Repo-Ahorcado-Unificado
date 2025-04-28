@@ -22,5 +22,4 @@ const getWebdriver = async () => {
   await driver.get(url);
   return driver;
 };
-
-export default { getWebdriver, By };
+module.exports = { getWebdriver, By };

@@ -1,7 +1,6 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 const feature = loadFeature("./features/login.feature");
 import { getWebdriver, By } from "./webdriver";
-jest.setTimeout(60000);
 
 defineFeature(feature, (test) => {
   test("Login successful", ({ given, when, then }) => {
