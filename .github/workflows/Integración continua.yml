@@ -57,7 +57,9 @@ jobs:
           npm install
           
       - name: Check Chrome Version
-        run: google-chrome --version
+        run: |
+          google-chrome --version
+          which chromedriver
       
       - name: Start Frontend
         run: |
