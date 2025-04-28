@@ -73,6 +73,11 @@ jobs:
           unzip chromedriver-linux64.zip
           sudo mv chromedriver-linux64 /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
+
+      - name: Check PATH for Chrome and ChromeDriver
+        run: |
+          which google-chrome
+          which chromedriver
       
       - name: Start Frontend
         run: |
