@@ -77,7 +77,7 @@ jobs:
         
       - name: Test ChromeDriver Execution
         run: |
-          cd /usr/local/bin/chromedriver
+          cd /usr/chromedriver
           chromedriver --version
           chromedriver --port=9515 &
           sleep 2
@@ -92,8 +92,8 @@ jobs:
 
       - name: Check ChromeDriver Permissions
         run: |
-          ls -l /usr/local/bin/chromedriver
-          ls -l /usr/local/bin/chromedriver
+          ls -l /usr/chromedriver
+          ls -l /usr/chromedriver
 
       - name: Increase Shared Memory
         run: sudo mount -o remount,size=2G /dev/shm
