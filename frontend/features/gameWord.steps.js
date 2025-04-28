@@ -1,5 +1,5 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
-const feature = loadFeature("./features/login.feature");
+const feature = loadFeature("./features/gameWord.feature");
 const { getWebdriver, By } = require("./webdriver");
 
 jest.setTimeout(30000);
