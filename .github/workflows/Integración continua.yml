@@ -62,9 +62,6 @@ jobs:
         env:
           CI: true
 
-      - name: Verify Frontend Server
-        run: curl -I http://localhost:8080
-
       - name: Run Aceptance Tests
         run: |
           cd frontend
