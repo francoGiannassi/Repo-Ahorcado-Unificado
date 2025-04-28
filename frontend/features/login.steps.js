@@ -43,7 +43,7 @@ defineFeature(feature, (test) => {
     then("I should see Difficulty Selection Page", async () => {
         await driver.wait(async () => {
           return driver
-            .findElements(By.id("difSelector"))
+            .findElements(By.id("Dificultad"))
             .then((found) => !!found.length);
         }, 20000);
     });
