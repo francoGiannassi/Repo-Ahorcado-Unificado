@@ -60,6 +60,7 @@ jobs:
         run: |
           google-chrome --version
           which chromedriver
+          chromedriver --version
       
       - name: Start Frontend
         run: |
@@ -68,6 +69,11 @@ jobs:
           sleep 5 
         env:
           CI: true
+
+      - name: Run Aceptance Tests
+        run: |
+          cd frontend
+          npm run test:acceptance -- --headless --disable-gpu --no-sandbox --disable-dev-shm-usage --remote-debugging-port=9222 --disable-software-rasterizer --disable-extensions --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-breakpad --disable-client-side-phishing-detection --disable-default-apps --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --enable-features=NetworkService,NetworkServiceInProcess
 
       - name: Deploy Backend to Render
         env:
