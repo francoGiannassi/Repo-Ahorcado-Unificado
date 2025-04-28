@@ -20,7 +20,7 @@
     "@ionic/vue-router": "^6.0.0",
     "chromedriver": "^135.0.0",
     "core-js": "^3.6.5",
-    "selenium-webdriver": "^4.35.0",
+    "selenium-webdriver": "^4.31.0",
     "vue": "^3.2.21",
     "vue-router": "^4.0.12"
   },
