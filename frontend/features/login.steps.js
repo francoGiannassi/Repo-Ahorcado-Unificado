@@ -14,12 +14,6 @@ defineFeature(feature, (test) => {
 
   afterEach(async () => {
     if (driver) {
-      try {
-        const pageSource = await driver.getPageSource();
-        require("fs").writeFileSync("pageSource.html", pageSource);
-      } catch (e) {
-        console.error("Error capturing page source:", e);
-      }
       await driver.quit();
     }
   });
