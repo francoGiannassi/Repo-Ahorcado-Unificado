@@ -7,7 +7,7 @@ from usuario import Usuario
 
 load_dotenv()
 
-frontend_url_local = os.getenv("FRONTEND_URL_LOCAL")
+frontend_url_local = 'http://localhost:8080'
 frontend_url_netlify = os.getenv("FRONTEND_URL_NETLIFY")
 
 app = Flask(__name__)
