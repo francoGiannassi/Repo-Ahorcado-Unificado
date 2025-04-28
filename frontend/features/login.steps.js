@@ -3,7 +3,7 @@ const feature = loadFeature("./features/login.feature");
 const { getWebdriver, By } = require("./webdriver");
 jest.setTimeout(10000);
 
-defineFeature(feature, (test) => {
+defineFeature(feature, async (test) => {
   test("Login successful", ({ given, when, then }) => {
     const driverPromise = getWebdriver();
     given("I set franco as username", async () => {
@@ -38,7 +38,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test("Login unsuccessful", ({ given, when, then }) => {
+  test("Login unsuccessful", async ({ given, when, then }) => {
     const driverPromise = getWebdriver();
     given("I set franco as username", async () => {
       const driver = await driverPromise;
