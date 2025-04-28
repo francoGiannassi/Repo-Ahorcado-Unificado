@@ -6,11 +6,11 @@ jest.setTimeout(10000);
 defineFeature(feature, (test) => {
   let driver;
 
-  jest.beforeEach(async () => {
+  beforeEach(async () => {
     driver = await getWebdriver();
   });
 
-  jest.afterEach(async () => {
+  afterEach(async () => {
     if (driver) {
       await driver.quit();
     }
