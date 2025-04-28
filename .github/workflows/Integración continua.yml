@@ -43,39 +43,45 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-      
-      - name: Install Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip
-          wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chrome-linux64.zip
-          unzip chrome-linux64.zip
-          sudo mv chrome-linux64 /usr/local/bin/google-chrome
-          sudo chmod +x /usr/local/bin/google-chrome
 
-      - name: Install ChromeDriver
+      - name: Instalar dependencias del frontend
         run: |
+          cd frontend
+          npm install
+      
+      - name: Instalar Google Chrome
+        run: |
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt-get update
-          sudo apt-get install -y wget unzip
-          wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chromedriver-linux64.zip
-          unzip chromedriver-linux64.zip
-          sudo mv chromedriver-linux64 /usr/local/bin/chromedriver
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Instalar ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
+          wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
           sudo chmod +x /usr/local/bin/chromedriver
 
       - name: Install frontend dependencies
         run: |
           cd frontend
           npm install
+
+      - name: Iniciar backend
+        run: |
+          cd backend
+          nohup python app.py &
+          sleep 5
       
-      - name: Start Frontend Server
+      - name: Iniciar frontend
         run: |
           cd frontend
-          npm run serve &
+          nohup npm run dev &
+          sleep 5 
         env:
           CI: true
-
-      - name: Wait for Frontend Server
-        run: sleep 10
 
       - name: Run Acceptance Tests
         run: |
