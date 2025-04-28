@@ -2,7 +2,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 const feature = loadFeature("./features/login.feature");
 const { getWebdriver, By } = require("./webdriver");
 
-jest.setTimeout(30000); // Aumenta el tiempo de espera global
+jest.setTimeout(30000);
 
 defineFeature(feature, (test) => {
   let driver;

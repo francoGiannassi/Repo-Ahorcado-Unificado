@@ -41,7 +41,7 @@
                 <ion-button @click="loguearse" id="loginBtn"
                   >Iniciar Sesión</ion-button
                 >
-                <ion-button @click="loguearseAnonimo"
+                <ion-button @click="loguearseAnonimo" id="loginAnonBtn"
                   >Ingresar como Anónimo</ion-button
                 >
               </ion-row>
@@ -55,13 +55,21 @@
               <ion-item>
                 <ion-label position="floating">Nivel de Dificultad</ion-label>
                 <ion-select v-model="dificultad" id="difSelector">
-                  <ion-select-option value="facil">Fácil</ion-select-option>
-                  <ion-select-option value="medio">Medio</ion-select-option>
-                  <ion-select-option value="dificil">Difícil</ion-select-option>
+                  <ion-select-option value="facil" id="dif1"
+                    >Fácil</ion-select-option
+                  >
+                  <ion-select-option value="medio" id="dif2"
+                    >Medio</ion-select-option
+                  >
+                  <ion-select-option value="dificil" id="dif3"
+                    >Difícil</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
               <ion-row class="ion-margin-top ion-justify-content-end">
-                <ion-button @click="jugar">Iniciar Juego</ion-button>
+                <ion-button @click="jugar" id="jugarBtn"
+                  >Iniciar Juego</ion-button
+                >
               </ion-row>
             </ion-card-content>
           </ion-card>
@@ -70,7 +78,7 @@
           <ion-card>
             <ion-card-title class="ion-margin-top">
               <ion-text color="primary">
-                <h1>{{ palabraParcial }}</h1>
+                <h1 id="palabraTxt">{{ palabraParcial }}</h1>
               </ion-text>
             </ion-card-title>
             <ion-card-content>
@@ -78,20 +86,28 @@
                 "Intentos Restantes: " + intentosRestantes
               }}</ion-label>
               <br />
-              <ion-label class="ion-margin-top"
+              <ion-label class="ion-margin-top" id="letrasErroneasLbl"
                 >{{ "Letras erróneas: " + letrasErroneas }}
               </ion-label>
               <br />
-              <ion-label class="ion-margin-top">{{
+              <ion-label class="ion-margin-top" id="palabrasErroneasLbl">{{
                 "Palabras erróneas: " + palabrasErroneas
               }}</ion-label>
               <ion-item v-if="inputActual === 'Letra'">
                 <ion-label position="floating">Ingresa una Letra</ion-label>
-                <ion-input type="text" v-model="letra"></ion-input>
+                <ion-input
+                  type="text"
+                  v-model="letra"
+                  id="inputLetra"
+                ></ion-input>
               </ion-item>
               <ion-item v-if="inputActual === 'Palabra'">
                 <ion-label position="floating">Arriesga una Palabra</ion-label>
-                <ion-input type="text" v-model="palabraArriesgada"></ion-input>
+                <ion-input
+                  type="text"
+                  id="inputPalabra"
+                  v-model="palabraArriesgada"
+                ></ion-input>
               </ion-item>
               <ion-row class="ion-margin-top ion-align-items-center">
                 <ion-radio-group
@@ -108,7 +124,10 @@
                   <ion-label style="margin-right: 4px"
                     >Arriesga una Palabra</ion-label
                   >
-                  <ion-radio value="Palabra"></ion-radio>
+                  <ion-radio
+                    value="Palabra"
+                    id="arriesgaPalabraRadio"
+                  ></ion-radio>
                 </ion-radio-group>
                 <ion-button
                   @click="pedirPista"
@@ -116,8 +135,20 @@
                   size="auto"
                   >Pedir Pista</ion-button
                 >
-                <ion-button @click="verificar" size="auto"
+                <ion-button @click="verificar" id="verificarBtn" size="auto"
                   >Verificar</ion-button
+                >
+              </ion-row>
+              <ion-row class="ion-justify-content-end ion-margin-top">
+                <ion-button @click="retry" id="reiniciarBtn" color="danger"
+                  >Reiniciar</ion-button
+                >
+                <ion-button
+                  @click="cerrarSesion"
+                  id="salirBtn"
+                  size="auto"
+                  color="danger"
+                  >Salir</ion-button
                 >
               </ion-row>
             </ion-card-content>
@@ -131,7 +162,7 @@
             <ion-card-title
               v-if="estadoJuego === 'Ganado'"
               class="ion-margin-top"
-              ><h1>
+              ><h1 id="resultadoTxt">
                 {{ "Ganaste! Resultado: " + resultado + " puntos" }}
               </h1>
               <h2 v-if="nombreUsuario !== ''">
@@ -151,8 +182,12 @@
                 ><ion-item>{{ jug }}</ion-item></ion-list
               >
               <ion-row class="ion-margin-top ion-justify-content-end">
-                <ion-button @click="retry">Volver a Jugar</ion-button>
-                <ion-button @click="cerrarSesion">Salir</ion-button>
+                <ion-button @click="retry" id="retryBtn"
+                  >Volver a Jugar</ion-button
+                >
+                <ion-button @click="cerrarSesion" id="cerrarCesionBtn"
+                  >Salir</ion-button
+                >
               </ion-row>
             </ion-card-content>
           </ion-card>
