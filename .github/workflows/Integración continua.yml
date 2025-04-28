@@ -49,6 +49,42 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Install Frontend Dependencies
+        run: |
+          cd frontend
+          npm install
+      
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chrome-linux64.zip
+          unzip chrome-linux64.zip
+          sudo mv chrome-linux64 /usr/local/bin/google-chrome
+          sudo chmod +x /usr/local/bin/google-chrome
+
+      - name: Install ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chromedriver-linux64.zip
+          unzip chromedriver-linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+      
+      - name: Start Frontend
+        run: |
+          cd frontend
+          nohup npm run dev &
+          sleep 5 
+        env:
+          CI: true
+
+      - name: Run Acceptance Tests
+        run: |
+          cd frontend
+          npm run test
+
       - name: Deploy Backend to Render
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
