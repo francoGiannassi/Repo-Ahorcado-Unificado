@@ -1,7 +1,6 @@
-const { Builder, By } = require("selenium-webdriver");
-const url = process.env.VUE_APP_AT_URL;
-const url2 = 'http://localhost:8080/';
-console.log("Testing URL:", url);
+import { Builder, By } from "selenium-webdriver";
+//const url = process.env.VUE_APP_AT_URL;
+const url = 'http://localhost:8080/';
 
 const getDriver = async () => {
   const chrome = require("selenium-webdriver/chrome");
@@ -20,7 +19,8 @@ const getDriver = async () => {
 
 const getWebdriver = async () => {
   const driver = await getDriver();
-  await driver.get(url2);
+  await driver.get(url);
   return driver;
 };
-module.exports = { getWebdriver, By };
+
+export default { getWebdriver, By };
