@@ -62,8 +62,8 @@ jobs:
           sudo apt-get install -y wget unzip
           wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chrome-linux64.zip
           unzip chrome-linux64.zip
-          sudo mv chrome-linux64 chrome
-          sudo chmod +x chrome
+          sudo mv chrome-linux64 /usr/local/bin/chrome
+          sudo chmod +x /usr/local/bin/chrome
 
       - name: Install ChromeDriver
         run: |
@@ -71,16 +71,9 @@ jobs:
           sudo apt-get install -y wget unzip
           wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chromedriver-linux64.zip
           unzip chromedriver-linux64.zip
-          sudo mv chromedriver-linux64 chromedriver
-          sudo chmod 755 chromedriver
-          sudo chmod +x chromedriver
-        
-      - name: Test ChromeDriver Execution
-        run: |
-          cd chromedriver
-          chromedriver --version
-          chromedriver --port=9515 &
-          sleep 2
+          sudo mv chromedriver-linux64 /usr/local/bin/chromedriver
+          sudo chmod 755 /usr/local/bin/chromedriver
+          sudo chmod +x /usr/local/bin/chromedriver
       
       - name: Start Frontend
         run: |
@@ -92,15 +85,17 @@ jobs:
 
       - name: Check ChromeDriver Permissions
         run: |
-          ls -l chromedriver
-          ls -l chromedriver
+          ls -l /usr/local/bin/chromedriver
 
       - name: Increase Shared Memory
         run: sudo mount -o remount,size=2G /dev/shm
 
       - name: Run Acceptance Tests
         run: |
-          cd frontend
+          cd /usr/local/bin/chromedriver
+          chromedriver --port=9515 &
+          sleep 2
+          cd ../../../../frontend
           sudo npm run test
 
       - name: Deploy Backend to Render
