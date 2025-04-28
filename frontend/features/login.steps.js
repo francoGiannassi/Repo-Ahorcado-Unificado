@@ -3,28 +3,31 @@ const feature = loadFeature("./features/login.feature");
 const { getWebdriver, By } = require("./webdriver");
 jest.setTimeout(10000);
 
-defineFeature(feature, async (test) => {
+defineFeature(feature, (test) => {
   test("Login successful", async ({ given, and, when, then }) => {
     const driver = await getWebdriver();
     given("I set franco as username", async () => {
-      await driver.wait(function () {
+      await driver.wait(async () => {
         return driver
           .findElements(By.id("username"))
           .then((found) => !!found.length);
       }, 5000);
       const input = await driver.findElement(By.css("#username input"));
-      input.sendKeys("franco");
+      await input.sendKeys("franco");
     });
+
     and("12345 as password", async () => {
       const input = await driver.findElement(By.css("#password input"));
-      input.sendKeys("12345");
+      await input.sendKeys("12345");
     });
+
     when("I click login", async () => {
       const button = await driver.findElement(By.css("#loginBtn"));
-      button.click();
+      await button.click();
     });
+
     then("I should see Difficulty Selection Page", async () => {
-      await driver.wait(function () {
+      await driver.wait(async () => {
         return driver
           .findElements(By.id("difSelector"))
           .then((found) => !!found.length);
