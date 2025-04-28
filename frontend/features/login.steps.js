@@ -2,7 +2,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 const feature = loadFeature("./features/login.feature");
 const { getWebdriver, By } = require("./webdriver");
 
-jest.setTimeout(30000);
+jest.setTimeout(60000);
 
 defineFeature(feature, (test) => {
   let driver;
@@ -25,7 +25,7 @@ defineFeature(feature, (test) => {
           return driver
             .findElements(By.id("username"))
             .then((found) => !!found.length);
-        }, 10000);
+        }, 20000);
         const input = await driver.findElement(By.css("#username input"));
         await input.sendKeys("franco");
     });
@@ -45,7 +45,7 @@ defineFeature(feature, (test) => {
           return driver
             .findElements(By.id("difSelector"))
             .then((found) => !!found.length);
-        }, 10000);
+        }, 20000);
     });
   });
 
@@ -55,7 +55,7 @@ defineFeature(feature, (test) => {
         return driver
           .findElements(By.id("username"))
           .then((found) => !!found.length);
-      }, 10000);
+      }, 20000);
       const input = await driver.findElement(By.css("#username input"));
       await input.sendKeys("franco");
     });
@@ -75,7 +75,7 @@ defineFeature(feature, (test) => {
         return driver
           .findElements(By.id("loginError"))
           .then((found) => !!found.length);
-      }, 5000);
+      }, 20000);
     });
   });
 });

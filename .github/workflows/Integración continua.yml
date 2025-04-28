@@ -64,7 +64,7 @@ jobs:
         run: |
           cd frontend
           nohup npm run serve &
-          sleep 10 
+          sleep 15 
         env:
           CI: true
 

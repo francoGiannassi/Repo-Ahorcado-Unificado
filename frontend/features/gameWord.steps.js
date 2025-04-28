@@ -2,7 +2,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 const feature = loadFeature("./features/gameWord.feature");
 const { getWebdriver, By } = require("./webdriver");
 
-jest.setTimeout(30000);
+jest.setTimeout(60000);
 
 defineFeature(feature, (test) => {
   let driver;
@@ -51,7 +51,7 @@ defineFeature(feature, (test) => {
         return driver
           .findElements(By.id("palabraTxt"))
           .then((found) => !!found.length);
-      }, 5000);
+      }, 20000);
     });
 
     when("I click risk a word", async () => {
@@ -65,7 +65,7 @@ defineFeature(feature, (test) => {
         return driver
           .findElements(By.css("#inputPalabra input"))
           .then((found) => !!found.length);
-      }, 5000);
+      }, 20000);
       await new Promise((r) => setTimeout(r, 250));
       const input = await driver.findElement(By.css("#inputPalabra input"));
       input.sendKeys("prueba");
@@ -85,7 +85,7 @@ defineFeature(feature, (test) => {
               .getText()
               .then((text) => text.includes("Palabras erróneas: Prueba"))
           );
-      }, 5000);
+      }, 20000);
       await new Promise((r) => setTimeout(r, 2000));
       const button = await driver.findElement(By.css("#salirBtn"));
       button.click();

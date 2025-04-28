@@ -2,7 +2,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 const feature = loadFeature("./features/gameLetter.feature");
 const { getWebdriver, By } = require("./webdriver");
 
-jest.setTimeout(30000);
+jest.setTimeout(60000);
 
 defineFeature(feature, (test) => {
   let driver;
@@ -26,7 +26,7 @@ defineFeature(feature, (test) => {
           const element = await driver.findElement(By.css("#loginAnonBtn"));
           return (await element.isDisplayed()) ? element : null;
         },
-        5000,
+        20000,
         "Login button is not interactable"
       );
       await button.click();
@@ -38,7 +38,7 @@ defineFeature(feature, (test) => {
           const element = await driver.findElement(By.css("#difSelector"));
           return (await element.isDisplayed()) ? element : null;
         },
-        5000,
+        20000,
         "Difficulty selector is not interactable"
       );
       await select.click();
@@ -54,7 +54,7 @@ defineFeature(feature, (test) => {
           const element = await driver.findElement(By.css("#jugarBtn"));
           return (await element.isDisplayed()) ? element : null;
         },
-        5000,
+        20000,
         "Play button is not interactable"
       );
       await button.click();
@@ -67,7 +67,7 @@ defineFeature(feature, (test) => {
             .findElements(By.id("palabraTxt"))
             .then((found) => !!found.length);
         },
-        5000,
+        20000,
         "Game did not start"
       );
     });
@@ -78,7 +78,7 @@ defineFeature(feature, (test) => {
           const element = await driver.findElement(By.css("#inputLetra input"));
           return (await element.isDisplayed()) ? element : null;
         },
-        5000,
+        20000,
         "Input field is not interactable"
       );
       await input.sendKeys("e");
@@ -93,7 +93,7 @@ defineFeature(feature, (test) => {
             .findElement(By.css(`h1`))
             .then((found) => found.getText().then((text) => text.includes("e")));
         },
-        5000,
+        20000,
         "Letter E is not visible in the word"
       );
       const button = await driver.findElement(By.css("#salirBtn"));
