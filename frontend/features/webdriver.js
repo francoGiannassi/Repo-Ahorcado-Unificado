@@ -1,11 +1,11 @@
-const { Builder, By } = require("selenium-webdriver");
+import { Builder, By } from "selenium-webdriver";
+import { Options, ServiceBuilder } from "selenium-webdriver/chrome";
 //const url = process.env.VUE_APP_AT_URL;
 //const getDriver = async () => await new Builder().forBrowser("chrome").build();
 const url = 'http://localhost:8080/';
 
 const getDriver = async () => {
-  const chrome = require("selenium-webdriver/chrome");
-  const options = new chrome.Options();
+  const options = new Options();
   options.addArguments("--headless");
   options.addArguments("--no-sandbox");
   options.addArguments("--disable-dev-shm-usage");
@@ -13,7 +13,7 @@ const getDriver = async () => {
   options.addArguments("--window-size=1920,1080");
   options.setChromeBinaryPath("/usr/local/bin/chrome"); 
   
-  const service = new chrome.ServiceBuilder("/usr/local/bin/chromedriver");
+  const service = new ServiceBuilder("/usr/local/bin/chromedriver");
   return await new Builder()
     .forBrowser("chrome")
     .setChromeOptions(options)
@@ -23,7 +23,11 @@ const getDriver = async () => {
 
 const getWebdriver = async () => {
   const driver = await getDriver();
-  await driver.get(url);
-  return driver;
+  try {
+    await driver.get(url);
+  } catch (error) {
+    console.error("Error accessing URL:", error);
+    throw error;
+  }
 };
-module.exports = { getWebdriver, By }; 
+export default { getWebdriver, By }; 
