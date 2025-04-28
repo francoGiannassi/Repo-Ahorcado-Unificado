@@ -60,8 +60,8 @@ jobs:
           sudo apt-get install -y wget unzip
           wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chrome-linux64.zip
           unzip chrome-linux64.zip
-          sudo mv chrome-linux64 /usr/local/bin/chrome-linux64
-          sudo chmod +x /usr/local/bin/chrome-linux64
+          sudo mv chrome-linux64 /usr/local/bin/chrome
+          sudo chmod +x /usr/local/bin/chrome/chrome.exe
 
       - name: Install ChromeDriver
         run: |
@@ -70,7 +70,7 @@ jobs:
           wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chromedriver-linux64.zip
           unzip chromedriver-linux64.zip
           sudo mv chromedriver-linux64 /usr/local/bin/chromedriver
-          sudo chmod +x /usr/local/bin/chromedriver
+          sudo chmod +x /usr/local/bin/chromedriver/chromedriver.exe
       
       - name: Start Frontend
         run: |
