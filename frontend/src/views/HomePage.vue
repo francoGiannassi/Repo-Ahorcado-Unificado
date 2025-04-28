@@ -117,7 +117,7 @@
                   >Pedir Pista</ion-button
                 >
                 <ion-button @click="verificar" size="auto"
-                  >Verificar</ion-button
+                  >Verificarr</ion-button
                 >
               </ion-row>
             </ion-card-content>
