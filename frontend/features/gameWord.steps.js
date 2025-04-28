@@ -101,7 +101,7 @@ defineFeature(feature, (test) => {
 
     then("I see Ganaste!", async () => {
       //try {
-      await new Promise((r) => setTimeout(r, 1000));
+/*       await new Promise((r) => setTimeout(r, 1000));
       await driver.wait(function () {
         return driver
           .findElement(By.css(`h1`))
@@ -112,7 +112,7 @@ defineFeature(feature, (test) => {
       await new Promise((r) => setTimeout(r, 2000));
       const button = await driver.findElement(By.css("#cerrarCesionBtn"));
       button.click();
-      await new Promise((r) => setTimeout(r, 1000));
+      await new Promise((r) => setTimeout(r, 1000)); */
       //} catch (error) {
       //  console.error("I should see Difficulty Selection Page", error);
       //}
