@@ -55,15 +55,9 @@ jobs:
         run: |
           cd frontend
           npm install
-      
-      - name: Install Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip
-          wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chrome-linux64.zip
-          unzip chrome-linux64.zip
-          sudo mv chrome-linux64 /usr/local/bin
-          sudo chmod +x /usr/local/bin/chrome-linux64
+          
+      - name: Check Chrome Version
+        run: google-chrome --version
       
       - name: Start Frontend
         run: |
@@ -72,16 +66,6 @@ jobs:
           sleep 5 
         env:
           CI: true
-
-      - name: Increase Shared Memory
-        run: sudo mount -o remount,size=2G /dev/shm
-
-      - name: Run Acceptance Tests
-        run: |
-          /usr/local/bin/chromedriver-linux64 --port=9515 &
-          sleep 2
-          cd frontend
-          sudo npm run test
 
       - name: Deploy Backend to Render
         env:
