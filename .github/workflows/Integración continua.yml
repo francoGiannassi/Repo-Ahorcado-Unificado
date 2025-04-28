@@ -92,8 +92,7 @@ jobs:
 
       - name: Run Acceptance Tests
         run: |
-          cd /usr/local/bin/chromedriver
-          chromedriver --port=9515 &
+          /usr/local/bin/chromedriver --port=9515 &
           sleep 2
           cd frontend
           sudo npm run test
