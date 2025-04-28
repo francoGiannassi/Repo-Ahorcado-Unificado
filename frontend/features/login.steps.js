@@ -14,7 +14,8 @@ defineFeature(feature, (test) => {
 
   afterEach(async () => {
     if (driver) {
-      await driver.quit();
+      await new Promise((r) => setTimeout(r, 2000));
+      await driver.close();
     }
   });
 
