@@ -55,14 +55,11 @@ jobs:
         run: |
           cd frontend
           npm install
-          
-      - name: Check Chrome Version
-        run: |
-          which google-chrome
-          google-chrome --version
-          which chromedriver
-          chromedriver --version
       
+          
+      - name: Increase Shared Memory
+        run: sudo mount -o remount,size=2G /dev/shm
+
       - name: Start Frontend
         run: |
           cd frontend
@@ -70,9 +67,6 @@ jobs:
           sleep 5 
         env:
           CI: true
-
-      - name: Increase Shared Memory
-        run: sudo mount -o remount,size=2G /dev/shm
 
       - name: Run Aceptance Tests
         run: |
