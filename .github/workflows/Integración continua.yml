@@ -77,9 +77,10 @@ jobs:
         
       - name: Test ChromeDriver Execution
         run: |
-          /usr/local/bin/chromedriver/chromedriver.exe --version
-          /usr/local/bin/chromedriver/chromedriver.exe --port=9515 &
-          sleep 5
+          cd /usr/local/bin/chromedriver
+          chromedriver --version
+          chromedriver --port=9515 &
+          sleep 2
       
       - name: Start Frontend
         run: |
