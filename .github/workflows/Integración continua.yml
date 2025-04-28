@@ -73,6 +73,7 @@ jobs:
           unzip chromedriver-linux64.zip
           sudo mv chromedriver-linux64 /usr/local/bin/chromedriver
           sudo chmod 755 /usr/local/bin/chromedriver
+          sudo chmod +x /usr/local/bin/chromedriver
       
       - name: Start Frontend
         run: |
@@ -81,6 +82,10 @@ jobs:
           sleep 5 
         env:
           CI: true
+
+      - name: Check ChromeDriver Permissions
+        run: |
+          ls -l /usr/local/bin/chromedriver
 
       - name: Increase Shared Memory
         run: sudo mount -o remount,size=2G /dev/shm
