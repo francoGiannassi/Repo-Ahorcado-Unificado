@@ -25,32 +25,41 @@ defineFeature(feature, (test) => {
   });
 
   test("Login successful", ({ given, and, when, then }) => {
-    given("I set franco as username", async () => {
-      await driver.wait(async () => {
-        return driver
-          .findElements(By.id("username"))
-          .then((found) => !!found.length);
-      }, 10000);
-      const input = await driver.findElement(By.css("#username input"));
-      await input.sendKeys("franco");
-    });
+    let count = 1;
+    try {
+      given("I set franco as username", async () => {
+        await driver.wait(async () => {
+          return driver
+            .findElements(By.id("username"))
+            .then((found) => !!found.length);
+        }, 10000);
+        const input = await driver.findElement(By.css("#username input"));
+        await input.sendKeys("franco");
+        count++;
+      });
 
-    and("12345 as password", async () => {
-      const input = await driver.findElement(By.css("#password input"));
-      await input.sendKeys("12345");
-    });
+      and("12345 as password", async () => {
+        const input = await driver.findElement(By.css("#password input"));
+        await input.sendKeys("12345");
+        count++;
+      });
 
-    when("I click login", async () => {
-      const button = await driver.findElement(By.css("#loginBtn"));
-      await button.click();
-    });
+      when("I click login", async () => {
+        const button = await driver.findElement(By.css("#loginBtn"));
+        await button.click();
+        count++;
+      });
 
-    then("I should see Difficulty Selection Page", async () => {
-      await driver.wait(async () => {
-        return driver
-          .findElements(By.id("difSelector"))
-          .then((found) => !!found.length);
-      }, 10000);
-    });
+      then("I should see Difficulty Selection Page", async () => {
+        await driver.wait(async () => {
+          return driver
+            .findElements(By.id("difSelector"))
+            .then((found) => !!found.length);
+        }, 10000);
+        count++;
+      });
+    } catch (error) {
+      console.error("Error in test " + count + ": " + error);
+    }
   });
 });
