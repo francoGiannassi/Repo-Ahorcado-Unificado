@@ -78,6 +78,8 @@ jobs:
         run: |
           which google-chrome
           which chromedriver
+          google-chrome --version
+          chromedriver --version
       
       - name: Start Frontend
         run: |
@@ -86,6 +88,9 @@ jobs:
           sleep 5 
         env:
           CI: true
+
+      - name: Increase Shared Memory
+        run: sudo mount -o remount,size=2G /dev/shm
 
       - name: Run Acceptance Tests
         run: |

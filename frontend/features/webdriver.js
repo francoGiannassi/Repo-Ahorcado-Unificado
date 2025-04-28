@@ -1,6 +1,6 @@
 const { Builder, By } = require("selenium-webdriver");
-//const url = process.env.VUE_APP_AT_URL;
-const url = 'http://localhost:8080/';
+const url = process.env.VUE_APP_AT_URL;
+//const url = 'http://localhost:8080/';
 
 const getDriver = async () => {
   const chrome = require("selenium-webdriver/chrome");
