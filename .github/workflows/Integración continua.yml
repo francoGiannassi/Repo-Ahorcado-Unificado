@@ -27,7 +27,7 @@ jobs:
       - name: Unit Tests & Code Coverage
         run: |
           pip install coverage
-          coverage run -m unittest
+          coverage run -m unittest discover -s backend -p "test_*.py"
           coverage report
           coverage xml
       - name: Upload coverage to Codecov
