@@ -30,4 +30,4 @@ const getWebdriver = async () => {
     throw error;
   }
 };
-export default { getWebdriver, By }; 
+module.exports = { getWebdriver, By };
