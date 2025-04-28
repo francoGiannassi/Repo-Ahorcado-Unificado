@@ -58,6 +58,13 @@ defineFeature(feature, (test) => {
 
   test("Login unsuccessful", ({ given, and, when, then }) => {
     given("I set franco as username", async () => {
+      try {
+        const alert = await driver.switchTo().alert();
+        await alert.dismiss();
+      } catch (e) {
+        console.error("Alert dismissal error:", e);
+      }
+      
       await driver.wait(async () => {
         return driver
           .findElements(By.id("username"))
