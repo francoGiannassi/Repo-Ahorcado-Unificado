@@ -73,13 +73,6 @@ jobs:
           unzip chromedriver-linux64.zip
           sudo mv chromedriver-linux64 /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
-
-      - name: Check PATH for Chrome and ChromeDriver
-        run: |
-          which google-chrome
-          which chromedriver
-          google-chrome --version
-          chromedriver --version
       
       - name: Start Frontend
         run: |
@@ -89,13 +82,10 @@ jobs:
         env:
           CI: true
 
-      - name: Increase Shared Memory
-        run: sudo mount -o remount,size=2G /dev/shm
-
       - name: Run Acceptance Tests
         run: |
           cd frontend
-          npm run test
+          sudo npm run test
 
       - name: Deploy Backend to Render
         env:
