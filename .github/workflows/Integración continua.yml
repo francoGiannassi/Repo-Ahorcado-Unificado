@@ -43,13 +43,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-
-      - name: Start Frontend Server
-        run: |
-          cd frontend
-          npm run serve &
-        env:
-          CI: true
       
       - name: Install Chrome
         run: |
@@ -68,14 +61,11 @@ jobs:
           unzip chromedriver-linux64.zip
           sudo mv chromedriver-linux64 /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
-      
-      - name: Increase Shared Memory
-        run: sudo mount -o remount,size=2G /dev/shm
 
       - name: Run Acceptance Tests
         run: |
           cd frontend
-          npm test
+          npm run test
 
       - name: Deploy Backend to Render
         env:
