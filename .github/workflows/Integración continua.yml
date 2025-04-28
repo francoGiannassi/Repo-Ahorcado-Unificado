@@ -62,8 +62,8 @@ jobs:
           sudo apt-get install -y wget unzip
           wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chrome-linux64.zip
           unzip chrome-linux64.zip
-          sudo mv chrome-linux64 /usr/local/bin/chrome
-          sudo chmod +x /usr/local/bin/chrome
+          sudo mv chrome-linux64 /usr/chrome
+          sudo chmod +x /usr/chrome
 
       - name: Install ChromeDriver
         run: |
@@ -71,9 +71,9 @@ jobs:
           sudo apt-get install -y wget unzip
           wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chromedriver-linux64.zip
           unzip chromedriver-linux64.zip
-          sudo mv chromedriver-linux64 /usr/local/bin/chromedriver
-          sudo chmod 755 /usr/local/bin/chromedriver
-          sudo chmod +x /usr/local/bin/chromedriver
+          sudo mv chromedriver-linux64 /usr/chromedriver
+          sudo chmod 755 /usr/chromedriver
+          sudo chmod +x /usr/chromedriver
         
       - name: Test ChromeDriver Execution
         run: |

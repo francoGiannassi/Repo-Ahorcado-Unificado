@@ -11,7 +11,7 @@ const getDriver = async () => {
   options.addArguments("--disable-gpu");
   options.addArguments("--window-size=1920,1080");
   
-  const service = new chrome.ServiceBuilder("/usr/local/bin/chromedriver");
+  const service = new chrome.ServiceBuilder("/usr/chromedriver");
   return await new Builder()
     .forBrowser("chrome")
     .setChromeOptions(options)
