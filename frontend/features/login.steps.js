@@ -9,7 +9,7 @@ defineFeature(feature, (test) => {
 
   beforeEach(async () => {
     driver = await getWebdriver();
-    await driver.get(process.env.VUE_APP_AT_URL);
+    await driver.get("https://repo-ahorcado-unificado.onrender.com/");
   });
 
   afterEach(async () => {
