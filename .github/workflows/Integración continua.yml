@@ -58,6 +58,7 @@ jobs:
           
       - name: Check Chrome Version
         run: |
+          which google-chrome
           google-chrome --version
           which chromedriver
           chromedriver --version
@@ -69,6 +70,9 @@ jobs:
           sleep 5 
         env:
           CI: true
+
+      - name: Increase Shared Memory
+        run: sudo mount -o remount,size=2G /dev/shm
 
       - name: Run Aceptance Tests
         run: |
