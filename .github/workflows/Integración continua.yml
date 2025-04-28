@@ -95,7 +95,7 @@ jobs:
           cd /usr/local/bin/chromedriver
           chromedriver --port=9515 &
           sleep 2
-          cd ../../../../frontend
+          cd frontend
           sudo npm run test
 
       - name: Deploy Backend to Render
