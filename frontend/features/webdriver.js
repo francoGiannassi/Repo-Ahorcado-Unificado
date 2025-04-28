@@ -1,5 +1,6 @@
 const { Builder, By } = require("selenium-webdriver");
 //const url = process.env.VUE_APP_AT_URL;
+//const getDriver = async () => await new Builder().forBrowser("chrome").build();
 const url = 'http://localhost:8080/';
 
 const getDriver = async () => {
@@ -10,12 +11,13 @@ const getDriver = async () => {
   options.addArguments("--disable-dev-shm-usage");
   options.addArguments("--disable-gpu");
   options.addArguments("--window-size=1920,1080");
+  options.setChromeBinaryPath("/usr/local/bin/chrome"); 
   
-  //const service = new chrome.ServiceBuilder("/usr/local/bin/chromedriver");
+  const service = new chrome.ServiceBuilder("/usr/local/bin/chromedriver");
   return await new Builder()
     .forBrowser("chrome")
     .setChromeOptions(options)
-    //.setChromeService(service)
+    .setChromeService(service)
     .build();
 };
 
@@ -24,4 +26,4 @@ const getWebdriver = async () => {
   await driver.get(url);
   return driver;
 };
-module.exports = { getWebdriver, By };
+module.exports = { getWebdriver, By }; 

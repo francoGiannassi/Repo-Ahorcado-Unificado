@@ -78,7 +78,7 @@ jobs:
       - name: Start Frontend
         run: |
           cd frontend
-          nohup npm run dev &
+          nohup npm run serve &
           sleep 5 
         env:
           CI: true
