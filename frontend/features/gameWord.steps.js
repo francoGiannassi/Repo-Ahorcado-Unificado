@@ -9,7 +9,7 @@ defineFeature(feature, (test) => {
 
   beforeEach(async () => {
     driver = await getWebdriver();
-    await driver.get("https://localhost:8080?palabra=test");
+    await driver.get("http://localhost:8080?palabra=test");
   });
 
   afterEach(async () => {
