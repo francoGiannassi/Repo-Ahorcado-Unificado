@@ -9,7 +9,7 @@
     <ion-content :fullscreen="true" color="light">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Ahorcado</ion-title>
+          <ion-title size="large">Ahorcado2</ion-title>
         </ion-toolbar>
       </ion-header>
 
