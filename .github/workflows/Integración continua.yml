@@ -26,7 +26,7 @@ jobs:
         run: |
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-          
+
       - name: Unit Tests & Code Coverage
         run: |
           pip install coverage
@@ -53,14 +53,15 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y wget
-          wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_114.0.5735.90-1_amd64.deb
-          sudo dpkg -i google-chrome-stable_114.0.5735.90-1_amd64.deb || sudo apt-get -f install -y
-
+          wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chrome-linux64.zip
+          unzip chrome-linux64.zip
+          sudo mv chrome-linux64 /usr/local/bin/google-chrome
+          sudo chmod +x /usr/local/bin/google-chrome
       - name: Install ChromeDriver
         run: |
           sudo apt-get update
           sudo apt-get install -y wget unzip
-          wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
+          wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chromedriver-linux64.zip
           unzip chromedriver_linux64.zip
           sudo mv chromedriver /usr/local/bin/
 
