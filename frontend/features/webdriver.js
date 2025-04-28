@@ -1,4 +1,4 @@
-import { Builder, By } from "selenium-webdriver";
+const { Builder, By } = require("selenium-webdriver");
 //const url = process.env.VUE_APP_AT_URL;
 const url = 'http://localhost:8080/';
 
