@@ -264,9 +264,9 @@ export default defineComponent({
           }),
         }
       );
-      const responseJson = await response.json().catch((err) => {
+      const responseJson = await response.json/*().catch((err) => {
         alert(err);
-      });
+      });*/
       if (responseJson.Error) {
         this.error = responseJson.Error;
       } else {
