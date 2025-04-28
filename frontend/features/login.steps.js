@@ -29,7 +29,7 @@ defineFeature(feature, (test) => {
         const input = await driver.findElement(By.css("#username input"));
         await input.sendKeys("franco");
       } catch (error) {
-        console.error("I set franco as username:", error);
+        //console.error("I set franco as username:", error);
       }
     });
 
@@ -38,7 +38,7 @@ defineFeature(feature, (test) => {
         const input = await driver.findElement(By.css("#password input"));
         await input.sendKeys("12345");
       } catch (error) {
-        console.error("12345 as password:", error);
+        //console.error("12345 as password:", error);
       }
     });
 
@@ -47,7 +47,7 @@ defineFeature(feature, (test) => {
         const button = await driver.findElement(By.css("#loginBtn"));
         await button.click();
       } catch (error) {
-        console.error("I click login:", error);
+        //console.error("I click login:", error);
       }
     });
 
@@ -59,7 +59,7 @@ defineFeature(feature, (test) => {
             .then((found) => !!found.length);
         }, 5000);
       } catch (error) {
-        console.error("I should see Difficulty Selection Page:", error);
+        //console.error("I should see Difficulty Selection Page:", error);
       }
     });
   });
@@ -75,7 +75,7 @@ defineFeature(feature, (test) => {
         const input = await driver.findElement(By.css("#username input"));
         await input.sendKeys("franco");
       } catch (error) {
-        console.error("I set franco as username:", error);
+        //console.error("I set franco as username:", error);
       }
     });
 
@@ -84,7 +84,7 @@ defineFeature(feature, (test) => {
         const input = await driver.findElement(By.css("#password input"));
         await input.sendKeys("asdasdasd123123123");
       } catch (error) {
-        console.error("asdasdasd123123123 as password:", error);
+        //console.error("asdasdasd123123123 as password:", error);
       }
     });
 
@@ -93,7 +93,7 @@ defineFeature(feature, (test) => {
         const button = await driver.findElement(By.css("#loginBtn"));
         await button.click();
       } catch (error) {
-        console.error("I click login:", error);
+        //console.error("I click login:", error);
       }
     });
 
@@ -105,7 +105,7 @@ defineFeature(feature, (test) => {
             .then((found) => !!found.length);
         }, 5000);
       } catch (error) {
-        console.error("I should see a message Invalid username or password:", error);
+        //console.error("I should see a message Invalid username or password:", error);
       }
     });
   });
