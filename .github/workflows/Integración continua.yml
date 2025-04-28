@@ -48,6 +48,11 @@ jobs:
         run: |
           cd frontend
           npm install
+      
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
       - name: Run Acceptance Tests
         run: |
