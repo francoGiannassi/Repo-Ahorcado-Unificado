@@ -1,11 +1,23 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 const feature = loadFeature("./features/login.feature");
 const { getWebdriver, By } = require("./webdriver");
-jest.setTimeout(10000);
+
+jest.setTimeout(20000);
 
 defineFeature(feature, (test) => {
-  test("Login successful", async ({ given, and, when, then }) => {
-    const driver = await getWebdriver();
+  let driver;
+
+  beforeEach(async () => {
+    driver = await getWebdriver();
+  });
+
+  afterEach(async () => {
+    if (driver) {
+      await driver.quit();
+    }
+  });
+
+  test("Login successful", ({ given, and, when, then }) => {
     given("I set franco as username", async () => {
       await driver.wait(async () => {
         return driver
@@ -32,38 +44,36 @@ defineFeature(feature, (test) => {
           .findElements(By.id("difSelector"))
           .then((found) => !!found.length);
       }, 5000);
-      await new Promise((r) => setTimeout(r, 2000));
-      await driver.close();
     });
   });
 
-  test("Login unsuccessful", async ({ given, and, when, then }) => {
-    const driver = await getWebdriver();
+  test("Login unsuccessful", ({ given, and, when, then }) => {
     given("I set franco as username", async () => {
-      await driver.wait(function () {
+      await driver.wait(async () => {
         return driver
           .findElements(By.id("username"))
           .then((found) => !!found.length);
       }, 5000);
       const input = await driver.findElement(By.css("#username input"));
-      input.sendKeys("franco");
+      await input.sendKeys("franco");
     });
+
     and("asdasdasd123123123 as password", async () => {
       const input = await driver.findElement(By.css("#password input"));
-      input.sendKeys("asdasdasd123123123");
+      await input.sendKeys("asdasdasd123123123");
     });
+
     when("I click login", async () => {
       const button = await driver.findElement(By.css("#loginBtn"));
-      button.click();
+      await button.click();
     });
+
     then("I should see a message Invalid username or password", async () => {
-      await driver.wait(function () {
+      await driver.wait(async () => {
         return driver
           .findElements(By.id("loginError"))
           .then((found) => !!found.length);
       }, 5000);
-      await new Promise((r) => setTimeout(r, 2000));
-      await driver.close();
     });
   });
 });
