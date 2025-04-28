@@ -284,7 +284,6 @@ export default defineComponent({
         alert("Seleccione una dificultad");
         return;
       }
-      console.log("URL " + process.env.VUE_APP_API_URL);
       const palabraTest = this.$route.query.palabra;
       const response = await fetch(
         process.env.VUE_APP_API_URL + "setPalabra/" +
@@ -299,6 +298,7 @@ export default defineComponent({
         }
       );
       const responseJson = await response.json().catch((err) => {
+        console.log(err);
         alert(err);
       });
       this.palabra = responseJson.palabra;
