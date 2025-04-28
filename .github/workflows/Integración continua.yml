@@ -54,12 +54,6 @@ jobs:
       - name: Increase Shared Memory
         run: sudo mount -o remount,size=2G /dev/shm
 
-      - name: Start Backend
-        run: |
-          cd backend
-          python app.py &
-          sleep 5
-
       - name: Start Frontend
         run: |
           cd frontend
@@ -67,6 +61,9 @@ jobs:
           sleep 15 
         env:
           CI: true
+
+      - name: Verify Frontend Server
+        run: curl -I http://localhost:8080
 
       - name: Run Aceptance Tests
         run: |
