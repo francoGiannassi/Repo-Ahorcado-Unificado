@@ -9,7 +9,7 @@ defineFeature(feature, (test) => {
 
   beforeEach(async () => {
     driver = await getWebdriver();
-    await driver.get("https://repo-ahorcado-unificado.onrender.com/");
+    await driver.get("https://ahorcardo-agiles.netlify.app/");
   });
 
   afterEach(async () => {
