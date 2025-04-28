@@ -13,11 +13,11 @@ const getDriver = async () => {
   options.addArguments("--window-size=1920,1080");
   //options.setChromeBinaryPath("/usr/local/bin/chrome-linux64"); 
   
-  //const service = new chrome.ServiceBuilder("/usr/local/bin/chromedriver");
+  const service = new chrome.ServiceBuilder("/usr/local/bin/chromedriver");
   return await new Builder()
     .forBrowser("chrome")
     .setChromeOptions(options)
-    //.setChromeService(service)
+    .setChromeService(service)
     .build();
 };
 
