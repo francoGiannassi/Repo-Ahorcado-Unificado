@@ -11,12 +11,12 @@ const getDriver = async () => {
   options.addArguments("--disable-dev-shm-usage");
   options.addArguments("--disable-gpu");
   options.addArguments("--window-size=1920,1080");
-  options.setChromeBinaryPath("/usr/local/bin/chrome-linux64"); 
+  //options.setChromeBinaryPath("/usr/local/bin/chrome-linux64"); 
   
   //const service = new chrome.ServiceBuilder("/usr/local/bin/chromedriver-linux64");
   return await new Builder()
     .forBrowser("chrome")
-    .setChromeOptions(options)
+    //.setChromeOptions(options)
     //.setChromeService(service)
     .build();
 };
