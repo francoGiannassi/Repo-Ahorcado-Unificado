@@ -21,65 +21,83 @@ defineFeature(feature, (test) => {
 
   test("Guess a correct letter", ({ given, and, when, then }) => {
     given("I click login as anonimous", async () => {
-      const button = await driver.findElement(By.css("#loginAnonBtn"));
-      button.click();
-      await new Promise((r) => setTimeout(r, 250));
-    });
-
-    when("I select a difficulty", async () => {
-      const select = await driver.findElement(By.css("#difSelector"));
-      select.click();
-      await new Promise((r) => setTimeout(r, 250));
-      const selectOpt = await driver.findElement(By.css("button"));
-      selectOpt.click();
-      await new Promise((r) => setTimeout(r, 250));
-      const okButton = await driver.findElement(
-        By.css(".alert-button-role-cancel +button")
+      const button = await driver.wait(
+        async () => {
+          const element = await driver.findElement(By.css("#loginAnonBtn"));
+          return (await element.isDisplayed()) ? element : null;
+        },
+        5000,
+        "Login button is not interactable"
       );
-      okButton.click();
-      await new Promise((r) => setTimeout(r, 250));
+      await button.click();
     });
-
+  
+    when("I select a difficulty", async () => {
+      const select = await driver.wait(
+        async () => {
+          const element = await driver.findElement(By.css("#difSelector"));
+          return (await element.isDisplayed()) ? element : null;
+        },
+        5000,
+        "Difficulty selector is not interactable"
+      );
+      await select.click();
+      const selectOpt = await driver.findElement(By.css("button"));
+      await selectOpt.click();
+      const okButton = await driver.findElement(By.css(".alert-button-role-cancel +button"));
+      await okButton.click();
+    });
+  
     and("I click play", async () => {
-      const button = await driver.findElement(By.css("#jugarBtn"));
-      button.click();
-      await new Promise((r) => setTimeout(r, 250));
+      const button = await driver.wait(
+        async () => {
+          const element = await driver.findElement(By.css("#jugarBtn"));
+          return (await element.isDisplayed()) ? element : null;
+        },
+        5000,
+        "Play button is not interactable"
+      );
+      await button.click();
     });
-    
+  
     then("The game starts", async () => {
-      await driver.wait(function () {
-        return driver
-          .findElements(By.id("palabraTxt"))
-          .then((found) => !!found.length);
-      }, 5000);
+      await driver.wait(
+        async () => {
+          return driver
+            .findElements(By.id("palabraTxt"))
+            .then((found) => !!found.length);
+        },
+        5000,
+        "Game did not start"
+      );
     });
-
+  
     when("I guess E as letter", async () => {
-      await driver.wait(function () {
-        return driver
-          .findElements(By.css("#inputLetra input"))
-          .then((found) => !!found.length);
-      }, 5000);
-      await new Promise((r) => setTimeout(r, 250));
-      const input = await driver.findElement(By.css("#inputLetra input"));
-      input.sendKeys("e");
-      await new Promise((r) => setTimeout(r, 250));
+      const input = await driver.wait(
+        async () => {
+          const element = await driver.findElement(By.css("#inputLetra input"));
+          return (await element.isDisplayed()) ? element : null;
+        },
+        5000,
+        "Input field is not interactable"
+      );
+      await input.sendKeys("e");
       const button = await driver.findElement(By.css("#verificarBtn"));
-      button.click();
-      await new Promise((r) => setTimeout(r, 250));
+      await button.click();
     });
-
+  
     then("I see E in the word to guess", async () => {
-      await driver.wait(function () {
-        return driver
-          .findElement(By.css(`h1`))
-          .then((found) => found.getText().then((text) => text.includes("e")));
-      }, 5000);
-      await new Promise((r) => setTimeout(r, 500));
+      await driver.wait(
+        async () => {
+          return driver
+            .findElement(By.css(`h1`))
+            .then((found) => found.getText().then((text) => text.includes("e")));
+        },
+        5000,
+        "Letter E is not visible in the word"
+      );
       const button = await driver.findElement(By.css("#salirBtn"));
-      button.click();
-      await new Promise((r) => setTimeout(r, 500));
-      button.click();
+      await button.click();
     });
   });
 });
