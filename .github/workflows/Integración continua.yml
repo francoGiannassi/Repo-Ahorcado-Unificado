@@ -55,7 +55,16 @@ jobs:
         run: |
           cd frontend
           npm install
-
+      
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/linux64/chrome-linux64.zip
+          unzip chrome-linux64.zip
+          sudo mv chrome-linux64 /usr/local/bin
+          sudo chmod +x /usr/local/bin/chrome-linux64
+      
       - name: Start Frontend
         run: |
           cd frontend
