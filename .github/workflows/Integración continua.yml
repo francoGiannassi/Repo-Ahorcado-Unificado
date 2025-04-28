@@ -75,7 +75,7 @@ jobs:
       - name: Run Acceptance Tests
         run: |
           cd frontend
-          npm run test
+          npm test
 
       - name: Deploy Backend to Render
         env:
