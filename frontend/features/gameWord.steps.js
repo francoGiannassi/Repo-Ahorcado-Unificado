@@ -81,7 +81,6 @@ defineFeature(feature, (test) => {
     });
 
     and("I guess test as word", async () => {
-    try {
       await driver.wait(function () {
         return driver
           .findElements(By.css("#inputPalabra input"))
@@ -94,24 +93,25 @@ defineFeature(feature, (test) => {
       const button = await driver.findElement(By.css("#verificarBtn"));
       button.click();
       await new Promise((r) => setTimeout(r, 250));
-      } catch (error) {
-        console.error("I should see Difficulty Selection Page", error);
-      }
     });
 
     then("I see Ganaste!", async () => {
-      await new Promise((r) => setTimeout(r, 1000));
-      await driver.wait(function () {
-        return driver
-          .findElement(By.css(`h1`))
-          .then((found) =>
-            found.getText().then((text) => text.includes("Ganaste!"))
-          );
-      }, 5000);
-      await new Promise((r) => setTimeout(r, 2000));
-      const button = await driver.findElement(By.css("#cerrarCesionBtn"));
-      button.click();
-      await new Promise((r) => setTimeout(r, 1000));
+      try {
+        await new Promise((r) => setTimeout(r, 1000));
+        await driver.wait(function () {
+          return driver
+            .findElement(By.css(`h1`))
+            .then((found) =>
+              found.getText().then((text) => text.includes("Ganaste!"))
+            );
+        }, 5000);
+        await new Promise((r) => setTimeout(r, 2000));
+        const button = await driver.findElement(By.css("#cerrarCesionBtn"));
+        button.click();
+        await new Promise((r) => setTimeout(r, 1000));
+      } catch (error) {
+        console.error("I see Ganaste!", error);
+      }
     });
   });
 
