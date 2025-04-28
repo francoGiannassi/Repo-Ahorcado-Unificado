@@ -21,17 +21,17 @@ defineFeature(feature, (test) => {
 
   test("Guess a correct word", ({ given, and, when, then }) => {
     given("I click login as anonimous", async () => {
-      //try {
+      try {
       const button = await driver.findElement(By.css("#loginAnonBtn"));
       button.click();
       await new Promise((r) => setTimeout(r, 250));
-      //} catch (error) {
-      //  console.error("I set franco as username", error);
-      //}
+      } catch (error) {
+        console.error("E1", error);
+      }
     });
 
     when("I select a difficulty", async () => {
-      //try {
+      try {
       const select = await driver.findElement(By.css("#difSelector"));
       select.click();
       await new Promise((r) => setTimeout(r, 250));
@@ -43,44 +43,45 @@ defineFeature(feature, (test) => {
       );
       okButton.click();
       await new Promise((r) => setTimeout(r, 250));
-      //} catch (error) {
-      //  console.error("12345 as password", error);
-      //}
+      } catch (error) {
+        console.error("E2", error);
+      }
     });
 
     and("I click play", async () => {
-      //try {
+      try {
       const button = await driver.findElement(By.css("#jugarBtn"));
       button.click();
       await new Promise((r) => setTimeout(r, 250));
-      //} catch (error) {
-      //  console.error("I click login", error);
-      //}
+      } catch (error) {
+        console.error("E3", error);
+      }
     });
 
     then("The game starts", async () => {
-      //try {
+      try {
       await driver.wait(function () {
         return driver
           .findElements(By.id("palabraTxt"))
           .then((found) => !!found.length);
       }, 5000);
-      //} catch (error) {
-      //  console.error("I should see Difficulty Selection Page", error);
-      //}
+      } catch (error) {
+        console.error("E4", error);
+      }
     });
 
     when("I click risk a word", async () => {
-      //try {
+      try {
       const button = await driver.findElement(By.css("#arriesgaPalabraRadio"));
       button.click();
       await new Promise((r) => setTimeout(r, 250));
-      //} catch (error) {
-      //  console.error("I should see Difficulty Selection Page", error);
-      //}
+      } catch (error) {
+        console.error("E5", error);
+      }
     });
 
     and("I guess test as word", async () => {
+      try{
       await driver.wait(function () {
         return driver
           .findElements(By.css("#inputPalabra input"))
@@ -93,6 +94,9 @@ defineFeature(feature, (test) => {
       const button = await driver.findElement(By.css("#verificarBtn"));
       button.click();
       await new Promise((r) => setTimeout(r, 250));
+      } catch (error) {
+        console.error("E6", error);
+      }
     });
 
     then("I see Ganaste!", async () => {
@@ -110,7 +114,7 @@ defineFeature(feature, (test) => {
         button.click();
         await new Promise((r) => setTimeout(r, 1000));
       } catch (error) {
-        console.error("I see Ganaste!", error);
+        console.error("E7", error);
       }
     });
   });
