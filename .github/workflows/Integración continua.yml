@@ -54,6 +54,20 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
+      - name: Install ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget https://chromedriver.storage.googleapis.com/135.0.7049.95/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+
+      - name: Check Chrome Version
+        run: google-chrome --version
+
+      - name: Check ChromeDriver Version
+        run: chromedriver --version
+
       - name: Run Acceptance Tests
         run: |
           cd frontend
