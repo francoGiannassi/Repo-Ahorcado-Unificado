@@ -2,9 +2,9 @@ const { Builder, By } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 //const url = process.env.VUE_APP_AT_URL;
 //const getDriver = async () => await new Builder().forBrowser("chrome").build();
-const url = 'http://localhost:8080/';
+//const url = 'http://localhost:8080/';
 
-const getDriver = async () => {
+const getWebdriver = async () => {
   const options = new chrome.Options();
   options.addArguments("--headless");
   options.addArguments("--no-sandbox");
@@ -21,13 +21,4 @@ const getDriver = async () => {
     .build();
 };
 
-const getWebdriver = async () => {
-  const driver = await getDriver();
-  try {
-    await driver.get(url);
-  } catch (error) {
-    console.error("Error accessing URL:", error);
-    throw error;
-  }
-};
 module.exports = { getWebdriver, By };
