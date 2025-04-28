@@ -4,7 +4,7 @@ const { getWebdriver, By } = require("./webdriver");
 jest.setTimeout(10000);
 
 defineFeature(feature, async (test) => {
-  test("Login successful", ({ given, when, then }) => {
+  test("Login successful", ({ given, and, when, then }) => {
     const driver = getWebdriver();
     given("I set franco as username", async () => {
       await driver.wait(function () {
@@ -15,7 +15,7 @@ defineFeature(feature, async (test) => {
       const input = await driver.findElement(By.css("#username input"));
       input.sendKeys("franco");
     });
-    given("12345 as password", async () => {
+    and("12345 as password", async () => {
       const input = await driver.findElement(By.css("#password input"));
       input.sendKeys("12345");
     });
@@ -34,8 +34,8 @@ defineFeature(feature, async (test) => {
     });
   });
 
-  test("Login unsuccessful", async ({ given, when, then }) => {
-    const driver = await getWebdriver();
+  test("Login unsuccessful", ({ given, and, when, then }) => {
+    const driver = getWebdriver();
     given("I set franco as username", async () => {
       await driver.wait(function () {
         return driver
@@ -45,7 +45,7 @@ defineFeature(feature, async (test) => {
       const input = await driver.findElement(By.css("#username input"));
       input.sendKeys("franco");
     });
-    given("asdasdasd123123123 as password", async () => {
+    and("asdasdasd123123123 as password", async () => {
       const input = await driver.findElement(By.css("#password input"));
       input.sendKeys("asdasdasd123123123");
     });
