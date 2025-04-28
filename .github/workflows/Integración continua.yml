@@ -62,6 +62,21 @@ jobs:
           sudo mv chromedriver-linux64 /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
 
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+      
+      - name: Start Frontend Server
+        run: |
+          cd frontend
+          npm run serve &
+        env:
+          CI: true
+
+      - name: Wait for Frontend Server
+        run: sleep 10
+
       - name: Run Acceptance Tests
         run: |
           cd frontend
