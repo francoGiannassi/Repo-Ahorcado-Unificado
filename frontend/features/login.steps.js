@@ -24,8 +24,8 @@ defineFeature(feature, (test) => {
       try {
         const alert = await driver.switchTo().alert();
         await alert.dismiss();
+      // eslint-disable-next-line no-empty
       } catch (e) {
-        console.error("Alert dismissal error:", e);
       }
 
       await driver.wait(async () => {
@@ -61,10 +61,10 @@ defineFeature(feature, (test) => {
       try {
         const alert = await driver.switchTo().alert();
         await alert.dismiss();
+      // eslint-disable-next-line no-empty
       } catch (e) {
-        console.error("Alert dismissal error:", e);
       }
-      
+
       await driver.wait(async () => {
         return driver
           .findElements(By.id("username"))
