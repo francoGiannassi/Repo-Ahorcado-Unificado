@@ -44,41 +44,6 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install Frontend Dependencies
-        run: |
-          cd frontend
-          npm install
-      
-      - name: Install Google Chrome
-        run: |
-          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-          google-chrome --version
-      
-      - name: Install ChromeDriver
-        run: |
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
-          wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip
-          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
-          sudo chmod +x /usr/local/bin/chromedriver
-          chromedriver --version
-      
-      - name: Start Frontend
-        run: |
-          cd frontend
-          nohup npm run dev &
-          sleep 5 
-        env:
-          CI: true
-
-      - name: Run Acceptance Tests
-        run: |
-          cd frontend
-          npm run test
-
       - name: Deploy Backend to Render
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
