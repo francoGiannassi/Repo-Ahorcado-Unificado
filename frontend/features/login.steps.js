@@ -1,6 +1,5 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 const feature = loadFeature("./features/login.feature");
-const { Alert } = require("selenium-webdriver");
 const { getWebdriver, By } = require("./webdriver");
 
 jest.setTimeout(20000);
@@ -21,12 +20,6 @@ defineFeature(feature, (test) => {
 
   test("Login successful", ({ given, and, when, then }) => {
     given("I set franco as username", async () => {
-      try {
-        const alert = await driver.switchTo().alert();
-        await alert.dismiss();
-      // eslint-disable-next-line no-empty
-      } catch (e) {
-      }
 
       await driver.wait(async () => {
         return driver
@@ -58,12 +51,6 @@ defineFeature(feature, (test) => {
 
   test("Login unsuccessful", ({ given, and, when, then }) => {
     given("I set franco as username", async () => {
-      try {
-        const alert = await driver.switchTo().alert();
-        await alert.dismiss();
-      // eslint-disable-next-line no-empty
-      } catch (e) {
-      }
 
       await driver.wait(async () => {
         return driver

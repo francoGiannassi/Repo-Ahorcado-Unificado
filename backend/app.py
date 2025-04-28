@@ -11,7 +11,8 @@ frontend_url_local = 'http://localhost:8080'
 frontend_url_netlify = os.getenv("FRONTEND_URL_NETLIFY")
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": [frontend_url_local, frontend_url_netlify]}})
+# [frontend_url_local, frontend_url_netlify]
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 ahorcado = Ahorcado()
 
