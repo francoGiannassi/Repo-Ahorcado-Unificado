@@ -299,7 +299,6 @@ export default defineComponent({
       );
       const responseJson = await response.json().catch((err) => {
         console.log(err);
-        alert(err);
       });
       this.palabra = responseJson.palabra;
       this.palabraParcial = responseJson.palabraParcial;
