@@ -74,6 +74,12 @@ jobs:
           sudo mv chromedriver-linux64 /usr/local/bin/chromedriver
           sudo chmod 755 /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
+        
+      - name: Test ChromeDriver Execution
+        run: |
+          /usr/local/bin/chromedriver --version
+          /usr/local/bin/chromedriver --port=9515 &
+          sleep 5
       
       - name: Start Frontend
         run: |
