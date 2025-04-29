@@ -81,7 +81,7 @@ defineFeature(feature, (test) => {
         20000,
         "Input field is not interactable"
       );
-      await input.sendKeys("a");
+      await input.sendKeys("e");
       const button = await driver.findElement(By.css("#verificarBtn"));
       await button.click();
     });
