@@ -1,9 +1,8 @@
 from usuario import Usuario
 import random
 
-class Ahorcado:
-    
-    #Variables
+class Ahorcado:   
+    # Variables
     palabra = ""
     palabrasFaciles = []
     palabrasIntermedias = []
@@ -24,9 +23,8 @@ class Ahorcado:
 
     nroPistas = 0
 
-    #Juego
+    # Juego
     def jugar(self):
-
         print("Ahorcado")
         print("1 - Loguearse")
         print("2 - Ingresar como anónimo")

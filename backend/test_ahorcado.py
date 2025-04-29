@@ -22,7 +22,7 @@ class TestsLogIn(unittest.TestCase):
     def test_valida_existencia_del_nombre(self):
         ahorcado = Ahorcado()
         us = Usuario()
-        us.setNombre("Franco1")
+        us.setNombre("Franco")
         ahorcado.getUsuarioActual().setNombre("Franco")
         self.assertTrue(ahorcado.existeUsuario(us.getNombre()))
 
