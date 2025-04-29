@@ -2,14 +2,14 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar color="primary">
-        <ion-title>Ahorcado</ion-title>
+        <ion-title>Ahorca2</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content :fullscreen="true" color="light">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Ahorcado</ion-title>
+          <ion-title size="large">Ahorca2</ion-title>
         </ion-toolbar>
       </ion-header>
 
